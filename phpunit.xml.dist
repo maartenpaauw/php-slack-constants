@@ -14,7 +14,6 @@
     beStrictAboutOutputDuringTests="true"
     cacheDirectory=".phpunit.cache"
     backupStaticProperties="false"
-    convertDeprecationsToExceptions="false"
 >
     <testsuites>
         <testsuite name="Unit Test">
