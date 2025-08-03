@@ -17,6 +17,7 @@ enum Events: string
      */
     #[API]
     case AppMention = 'app_mention';
+
     /**
      * Indicates your app's event subscriptions are being rate limited
      *
@@ -24,6 +25,7 @@ enum Events: string
      */
     #[API]
     case AppRateLimited = 'app_rate_limited';
+
     /**
      * User requested an app
      *
@@ -31,6 +33,7 @@ enum Events: string
      */
     #[API]
     case AppRequested = 'app_requested';
+
     /**
      * Your Slack app was uninstalled
      *
@@ -38,6 +41,7 @@ enum Events: string
      */
     #[API]
     case AppUninstalled = 'app_uninstalled';
+
     /**
      * User has uninstalled an app
      *
@@ -45,6 +49,7 @@ enum Events: string
      */
     #[API]
     case AppUninstalledTeam = 'app_uninstalled_team';
+
     /**
      * The context changed while an AI assistant thread was visible
      *
@@ -52,6 +57,7 @@ enum Events: string
      */
     #[API]
     case AssistantThreadContextChanged = 'assistant_thread_context_changed';
+
     /**
      * An AI assistant thread was started
      *
@@ -59,6 +65,7 @@ enum Events: string
      */
     #[API]
     case AssistantThreadStarted = 'assistant_thread_started';
+
     /**
      * A bot user was added
      *
@@ -66,6 +73,7 @@ enum Events: string
      */
     #[RTM]
     case BotAdded = 'bot_added';
+
     /**
      * A bot user was changed
      *
@@ -73,6 +81,7 @@ enum Events: string
      */
     #[RTM]
     case BotChanged = 'bot_changed';
+
     /**
      * A Call was rejected
      *
@@ -80,6 +89,7 @@ enum Events: string
      */
     #[API]
     case CallRejected = 'call_rejected';
+
     /**
      * A channel was archived
      *
@@ -87,6 +97,7 @@ enum Events: string
      */
     #[API] #[RTM]
     case ChannelArchive = 'channel_archive';
+
     /**
      * A channel was created
      *
@@ -94,6 +105,7 @@ enum Events: string
      */
     #[API] #[RTM]
     case ChannelCreated = 'channel_created';
+
     /**
      * A channel was deleted
      *
@@ -101,6 +113,7 @@ enum Events: string
      */
     #[API] #[RTM]
     case ChannelDeleted = 'channel_deleted';
+
     /**
      * Bulk updates were made to a channel's history
      *
@@ -108,6 +121,7 @@ enum Events: string
      */
     #[API] #[RTM]
     case ChannelHistoryChanged = 'channel_history_changed';
+
     /**
      * A channel ID changed
      *
@@ -115,6 +129,7 @@ enum Events: string
      */
     #[API]
     case ChannelIdChanged = 'channel_id_changed';
+
     /**
      * You joined a channel
      *
@@ -122,6 +137,7 @@ enum Events: string
      */
     #[RTM]
     case ChannelJoined = 'channel_joined';
+
     /**
      * A channel has been shared with an external workspace
      *
@@ -129,6 +145,7 @@ enum Events: string
      */
     #[API]
     case ChannelShared = 'channel_shared';
+
     /**
      * A custom emoji has been added or changed
      *
@@ -136,6 +153,7 @@ enum Events: string
      */
     #[API] #[RTM]
     case EmojiChanged = 'emoji_changed';
+
     /**
      * An enterprise grid migration has finished on an external workspace
      *
@@ -143,6 +161,7 @@ enum Events: string
      */
     #[RTM]
     case ExternalOrgMigrationFinished = 'external_org_migration_finished';
+
     /**
      * An enterprise grid migration has started on an external workspace
      *
@@ -150,6 +169,7 @@ enum Events: string
      */
     #[RTM]
     case ExternalOrgMigrationStarted = 'external_org_migration_started';
+
     /**
      * You manually updated your presence
      *
@@ -157,6 +177,7 @@ enum Events: string
      */
     #[RTM]
     case ManualPresenceChange = 'manual_presence_change';
+
     /**
      * A user joined a public channel, private channel or MPDM
      *
@@ -164,6 +185,7 @@ enum Events: string
      */
     #[API] #[RTM]
     case MemberJoinedChannel = 'member_joined_channel';
+
     /**
      * A message was sent to a channel
      *
@@ -171,6 +193,7 @@ enum Events: string
      */
     #[API] #[RTM]
     case Message = 'message';
+
     /**
      * A message was posted to a channel
      *
@@ -178,6 +201,7 @@ enum Events: string
      */
     #[API]
     case MessageChannels = 'message.channels';
+
     /**
      * A message was posted to a private channel
      *
@@ -185,6 +209,7 @@ enum Events: string
      */
     #[API]
     case MessageGroups = 'message.groups';
+
     /**
      * A message was posted to a direct message conversation
      *
@@ -192,6 +217,7 @@ enum Events: string
      */
     #[API]
     case MessageIm = 'message.im';
+
     /**
      * A message was posted to a multiparty direct message
      *
@@ -199,6 +225,7 @@ enum Events: string
      */
     #[API]
     case MessageMpim = 'message.mpim';
+
     /**
      * Message metadata was deleted
      *
@@ -206,6 +233,7 @@ enum Events: string
      */
     #[API]
     case MessageMetadataDeleted = 'message_metadata_deleted';
+
     /**
      * A pin was added to a channel
      *
@@ -213,6 +241,7 @@ enum Events: string
      */
     #[API] #[RTM]
     case PinAdded = 'pin_added';
+
     /**
      * A member's presence changed
      *
@@ -220,6 +249,7 @@ enum Events: string
      */
     #[RTM]
     case PresenceChange = 'presence_change';
+
     /**
      * Subscribe to presence events for the specified users
      *
@@ -227,6 +257,7 @@ enum Events: string
      */
     #[RTM]
     case PresenceSub = 'presence_sub';
+
     /**
      * A member has added an emoji reaction to an item
      *
@@ -234,6 +265,7 @@ enum Events: string
      */
     #[API] #[RTM]
     case ReactionAdded = 'reaction_added';
+
     /**
      * A member removed an emoji reaction
      *
@@ -241,6 +273,7 @@ enum Events: string
      */
     #[API] #[RTM]
     case ReactionRemoved = 'reaction_removed';
+
     /**
      * Experimental
      *
@@ -248,6 +281,7 @@ enum Events: string
      */
     #[RTM] #[Deprecated]
     case ReconnectUrl = 'reconnect_url';
+
     /**
      * Access to a set of resources was granted for your app
      *
@@ -255,6 +289,7 @@ enum Events: string
      */
     #[API]
     case ResourcesAdded = 'resources_added';
+
     /**
      * Access to a set of resources was removed for your app
      *
@@ -262,6 +297,7 @@ enum Events: string
      */
     #[API]
     case ResourcesRemoved = 'resources_removed';
+
     /**
      * OAuth scopes were denied to your app
      *
@@ -269,6 +305,7 @@ enum Events: string
      */
     #[API]
     case ScopeDenied = 'scope_denied';
+
     /**
      * OAuth scopes were granted to your app
      *
@@ -276,6 +313,7 @@ enum Events: string
      */
     #[API]
     case ScopeGranted = 'scope_granted';
+
     /**
      * A shared channel invite was accepted
      *
@@ -283,6 +321,7 @@ enum Events: string
      */
     #[API]
     case SharedChannelInviteAccepted = 'shared_channel_invite_accepted';
+
     /**
      * A shared channel invite was approved
      *
@@ -290,6 +329,7 @@ enum Events: string
      */
     #[API]
     case SharedChannelInviteApproved = 'shared_channel_invite_approved';
+
     /**
      * A shared channel invite was declined
      *
@@ -297,6 +337,7 @@ enum Events: string
      */
     #[API]
     case SharedChannelInviteDeclined = 'shared_channel_invite_declined';
+
     /**
      * A shared channel invite was sent to a Slack user
      *
@@ -304,6 +345,7 @@ enum Events: string
      */
     #[API] #[RTM]
     case SharedChannelInviteReceived = 'shared_channel_invite_received';
+
     /**
      * A shared channel invite was requested
      *
@@ -311,6 +353,7 @@ enum Events: string
      */
     #[API]
     case SharedChannelInviteRequested = 'shared_channel_invite_requested';
+
     /**
      * A member has saved an item for later or starred an item
      *
@@ -318,6 +361,7 @@ enum Events: string
      */
     #[API] #[RTM]
     case StarAdded = 'star_added';
+
     /**
      * A new member has joined
      *
@@ -325,6 +369,7 @@ enum Events: string
      */
     #[API] #[RTM]
     case TeamJoin = 'team_join';
+
     /**
      * A member's data has changed
      *
@@ -332,6 +377,7 @@ enum Events: string
      */
     #[API] #[RTM]
     case UserChange = 'user_change';
+
     /**
      * User resource was denied to your app
      *
