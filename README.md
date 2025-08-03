@@ -37,7 +37,6 @@ use Maartenpaauw\Slack\Constants\Events;
 Events::AppMention->value; // app_mention
 Events::AppMention->supportsEventsApi(); // true
 Events::AppMention->supportsRtmApi(); // false
-Events::AppMention->isDeprecated(); // false
 ```
 
 ## Testing
