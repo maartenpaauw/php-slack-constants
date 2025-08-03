@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Maartenpaauw\Slack\Constants;
 
-use Deprecated;
 use ReflectionAttribute;
 use ReflectionEnumBackedCase;
 
@@ -283,28 +282,12 @@ enum Events: string
     case FileChange = 'file_change';
 
     /**
-     * A file comment was added
-     *
-     * @see https://api.slack.com/events/file_comment_added
-     */
-    #[API] #[RTM] #[Deprecated]
-    case FileCommentAdded = 'file_comment_added';
-
-    /**
      * A file comment was deleted
      *
      * @see https://api.slack.com/events/file_comment_deleted
      */
     #[API] #[RTM]
     case FileCommentDeleted = 'file_comment_deleted';
-
-    /**
-     * A file comment was edited
-     *
-     * @see https://api.slack.com/events/file_comment_edited
-     */
-    #[API] #[RTM] #[Deprecated]
-    case FileCommentEdited = 'file_comment_edited';
 
     /**
      * A file was created
@@ -691,38 +674,6 @@ enum Events: string
     case ReconnectUrl = 'reconnect_url';
 
     /**
-     * Access to a set of resources was granted for your app
-     *
-     * @see https://api.slack.com/events/resources_added
-     */
-    #[API] #[Deprecated]
-    case ResourcesAdded = 'resources_added';
-
-    /**
-     * Access to a set of resources was removed for your app
-     *
-     * @see https://api.slack.com/events/resources_removed
-     */
-    #[API] #[Deprecated]
-    case ResourcesRemoved = 'resources_removed';
-
-    /**
-     * OAuth scopes were denied to your app
-     *
-     * @see https://api.slack.com/events/scope_denied
-     */
-    #[API] #[Deprecated]
-    case ScopeDenied = 'scope_denied';
-
-    /**
-     * OAuth scopes were granted to your app
-     *
-     * @see https://api.slack.com/events/scope_granted
-     */
-    #[API] #[Deprecated]
-    case ScopeGranted = 'scope_granted';
-
-    /**
      * A shared channel invite was accepted
      *
      * @see https://api.slack.com/events/shared_channel_invite_accepted
@@ -939,30 +890,6 @@ enum Events: string
     case UserHuddleChanged = 'user_huddle_changed';
 
     /**
-     * User resource was denied to your app
-     *
-     * @see https://api.slack.com/events/user_resource_denied
-     */
-    #[API] #[Deprecated]
-    case UserResourceDenied = 'user_resource_denied';
-
-    /**
-     * User resource was granted to your app
-     *
-     * @see https://api.slack.com/events/user_resource_granted
-     */
-    #[API] #[Deprecated]
-    case UserResourceGranted = 'user_resource_granted';
-
-    /**
-     * User resource was removed from your app
-     *
-     * @see https://api.slack.com/events/user_resource_removed
-     */
-    #[API] #[Deprecated]
-    case UserResourceRemoved = 'user_resource_removed';
-
-    /**
      * A channel member is typing a message
      *
      * @see https://api.slack.com/events/user_typing
@@ -1032,17 +959,6 @@ enum Events: string
         );
     }
 
-    public function isDeprecated(): bool
-    {
-        $reflection = new ReflectionEnumBackedCase(class: self::class, constant: $this->name);
-        $attributes = $reflection->getAttributes();
-
-        return array_any(
-            array: $attributes,
-            callback: static fn (ReflectionAttribute $attribute): bool => $attribute->newInstance() instanceof Deprecated,
-        );
-    }
-
     /**
      * @return Events[]
      */
@@ -1062,15 +978,5 @@ enum Events: string
         return array_filter(
             array: self::cases(),
             callback: static fn (Events $event): bool => $event->supportsRtmApi());
-    }
-
-    /**
-     * @return Events[]
-     */
-    public static function deprecated(): array
-    {
-        return array_filter(
-            array: self::cases(),
-            callback: static fn (Events $event): bool => $event->isDeprecated());
     }
 }
