@@ -4,15 +4,22 @@
 [![Tests](https://img.shields.io/github/actions/workflow/status/maartenpaauw/php-slack-constants/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/maartenpaauw/php-slack-constants/actions/workflows/run-tests.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/maartenpaauw/php-slack-constants.svg?style=flat-square)](https://packagist.org/packages/maartenpaauw/php-slack-constants)
 
-This is where your description should go. Try and limit it to a paragraph or two. Consider adding a small example.
+This package provides a PHP string-backed enum for the Slack API events with full support for the Events API and RTM
+API. The package helps you maintain consistency by preventing typos and provides context about each event, such as
+whether it's supported by certain APIs or if it's deprecated.
 
-## Support us
+## Support Me
 
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/php-slack-constants.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/php-slack-constants)
+<p class="filament-hidden">
+    <a href="https://filamentphp.com/plugins/maartenpaauw-model-states">
+        <img src="https://raw.githubusercontent.com/maartenpaauw/model-states-for-filament-docs/main/assets/images/model-states-for-filament-banner.jpg"
+            alt="Model States for Filament"
+            width="700px" />
+    </a>
+</p>
 
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
+You can support me by [buying Model States for Filament](https://filamentphp.com/plugins/maartenpaauw-model-states).
 
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
 
 ## Installation
 
@@ -25,8 +32,12 @@ composer require maartenpaauw/php-slack-constants
 ## Usage
 
 ```php
-$skeleton = new Maartenpaauw\PhpSlackConstants();
-echo $skeleton->echoPhrase('Hello, Maartenpaauw!');
+use Maartenpaauw\Slack\Constants\Events;
+
+Events::AppMention->value; // app_mention
+Events::AppMention->supportsEventsApi(); // true
+Events::AppMention->supportsRtmApi(); // false
+Events::AppMention->isDeprecated(); // false
 ```
 
 ## Testing
@@ -38,14 +49,6 @@ composer test
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
-
-## Contributing
-
-Please see [CONTRIBUTING](https://github.com/spatie/.github/blob/main/CONTRIBUTING.md) for details.
-
-## Security Vulnerabilities
-
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
 
 ## Credits
 
