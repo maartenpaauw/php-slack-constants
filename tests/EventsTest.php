@@ -33,4 +33,28 @@ final class EventsTest extends TestCase
         self::assertTrue(condition: Events::FileCommentAdded->supportsRtmApi());
         self::assertTrue(condition: Events::FileCommentAdded->isDeprecated());
     }
+
+    #[Test]
+    public function it_lists_all_api_cases(): void
+    {
+        foreach (Events::api() as $event) {
+            self::assertTrue(condition: $event->supportsEventsApi());
+        }
+    }
+
+    #[Test]
+    public function it_lists_all_rtm_cases(): void
+    {
+        foreach (Events::rtm() as $event) {
+            self::assertTrue(condition: $event->supportsRtmApi());
+        }
+    }
+
+    #[Test]
+    public function it_lists_all_deprecated_cases(): void
+    {
+        foreach (Events::deprecated() as $event) {
+            self::assertTrue(condition: $event->isDeprecated());
+        }
+    }
 }
