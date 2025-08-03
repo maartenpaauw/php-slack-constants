@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Maartenpaauw\Slack\Constants\Tests;
 
 use Maartenpaauw\Slack\Constants\Events;
