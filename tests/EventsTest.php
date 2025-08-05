@@ -6,9 +6,11 @@ namespace Maartenpaauw\Slack\Constants\Tests;
 
 use Maartenpaauw\Slack\Constants\Events;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
+#[Small]
 #[CoversClass(className: Events::class)]
 final class EventsTest extends TestCase
 {
@@ -26,7 +28,7 @@ final class EventsTest extends TestCase
     }
 
     #[Test]
-    public function it_lists_all_events_api_cases(): void
+    public function it_lists_all_events_api_events(): void
     {
         foreach (Events::eventsApi() as $event) {
             self::assertTrue(condition: $event->supportsEventsApi());
@@ -34,7 +36,7 @@ final class EventsTest extends TestCase
     }
 
     #[Test]
-    public function it_lists_all_rtm_api_cases(): void
+    public function it_lists_all_rtm_api_events(): void
     {
         foreach (Events::rtmApi() as $event) {
             self::assertTrue(condition: $event->supportsRtmApi());
