@@ -15,7 +15,7 @@ trait SupportsAttributes
     /**
      * @template T
      *
-     * @param class-string<T> $class
+     * @param  class-string<T>  $class
      */
     private function hasAttribute(string $class): bool
     {
