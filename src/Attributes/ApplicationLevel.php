@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Maartenpaauw\Slack\Constants;
+namespace Maartenpaauw\Slack\Constants\Attributes;
 
 use Attribute;
 

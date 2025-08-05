@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Maartenpaauw\Slack\Constants;
 
+use Maartenpaauw\Slack\Constants\Attributes\API;
+use Maartenpaauw\Slack\Constants\Attributes\RTM;
 use ReflectionAttribute;
 use ReflectionEnumBackedCase;
 

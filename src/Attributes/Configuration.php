@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Maartenpaauw\Slack\Constants;
+namespace Maartenpaauw\Slack\Constants\Attributes;
 
 use Attribute;
 
@@ -10,4 +10,4 @@ use Attribute;
  * @internal
  */
 #[Attribute(Attribute::TARGET_CLASS_CONSTANT)]
-final readonly class RTM {}
+final readonly class Configuration {}

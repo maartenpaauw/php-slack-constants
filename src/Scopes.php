@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace Maartenpaauw\Slack\Constants;
 
+use Maartenpaauw\Slack\Constants\Attributes\ApplicationLevel;
+use Maartenpaauw\Slack\Constants\Attributes\Bot;
+use Maartenpaauw\Slack\Constants\Attributes\Configuration;
+use Maartenpaauw\Slack\Constants\Attributes\User;
 use ReflectionAttribute;
 use ReflectionEnumBackedCase;
 
