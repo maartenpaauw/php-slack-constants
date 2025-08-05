@@ -2,14 +2,17 @@
 
 declare(strict_types=1);
 
+use Maartenpaauw\Slack\Constants\Concerns\SupportsAttributes;
 use Maartenpaauw\Slack\Constants\Scopes;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 #[Small]
 #[CoversClass(className: Scopes::class)]
+#[CoversTrait(traitName: SupportsAttributes::class)]
 final class ScopesTest extends TestCase
 {
     #[Test]
