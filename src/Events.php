@@ -6,11 +6,12 @@ namespace Maartenpaauw\Slack\Constants;
 
 use Maartenpaauw\Slack\Constants\Attributes\API;
 use Maartenpaauw\Slack\Constants\Attributes\RTM;
-use ReflectionAttribute;
-use ReflectionEnumBackedCase;
+use Maartenpaauw\Slack\Constants\Concerns\SupportsAttributes;
 
 enum Events: string
 {
+    use SupportsAttributes;
+
     /**
      * The list of accounts a user is signed into has changed
      *
@@ -941,24 +942,12 @@ enum Events: string
 
     public function supportsEventsApi(): bool
     {
-        $reflection = new ReflectionEnumBackedCase(class: self::class, constant: $this->name);
-        $attributes = $reflection->getAttributes();
-
-        return array_any(
-            array: $attributes,
-            callback: static fn (ReflectionAttribute $attribute): bool => $attribute->newInstance() instanceof API,
-        );
+        return $this->hasAttribute(class: API::class);
     }
 
     public function supportsRtmApi(): bool
     {
-        $reflection = new ReflectionEnumBackedCase(self::class, $this->name);
-        $attributes = $reflection->getAttributes();
-
-        return array_any(
-            array: $attributes,
-            callback: static fn (ReflectionAttribute $attribute): bool => $attribute->newInstance() instanceof RTM,
-        );
+        return $this->hasAttribute(class: RTM::class);
     }
 
     /**

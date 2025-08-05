@@ -8,11 +8,12 @@ use Maartenpaauw\Slack\Constants\Attributes\ApplicationLevel;
 use Maartenpaauw\Slack\Constants\Attributes\Bot;
 use Maartenpaauw\Slack\Constants\Attributes\Configuration;
 use Maartenpaauw\Slack\Constants\Attributes\User;
-use ReflectionAttribute;
-use ReflectionEnumBackedCase;
+use Maartenpaauw\Slack\Constants\Concerns\SupportsAttributes;
 
 enum Scopes: string
 {
+    use SupportsAttributes;
+
     /**
      * Administer a workspace
      *
@@ -988,46 +989,22 @@ enum Scopes: string
 
     public function supportsApplicationLevelTokens(): bool
     {
-        $reflection = new ReflectionEnumBackedCase(class: self::class, constant: $this->name);
-        $attributes = $reflection->getAttributes();
-
-        return array_any(
-            array: $attributes,
-            callback: static fn (ReflectionAttribute $attribute): bool => $attribute->newInstance() instanceof ApplicationLevel,
-        );
+        return $this->hasAttribute(class: ApplicationLevel::class);
     }
 
     public function supportsBotTokens(): bool
     {
-        $reflection = new ReflectionEnumBackedCase(class: self::class, constant: $this->name);
-        $attributes = $reflection->getAttributes();
-
-        return array_any(
-            array: $attributes,
-            callback: static fn (ReflectionAttribute $attribute): bool => $attribute->newInstance() instanceof Bot,
-        );
+        return $this->hasAttribute(class: Bot::class);
     }
 
     public function supportsConfigurationTokens(): bool
     {
-        $reflection = new ReflectionEnumBackedCase(class: self::class, constant: $this->name);
-        $attributes = $reflection->getAttributes();
-
-        return array_any(
-            array: $attributes,
-            callback: static fn (ReflectionAttribute $attribute): bool => $attribute->newInstance() instanceof Configuration,
-        );
+        return $this->hasAttribute(class: Configuration::class);
     }
 
     public function supportsUserTokens(): bool
     {
-        $reflection = new ReflectionEnumBackedCase(class: self::class, constant: $this->name);
-        $attributes = $reflection->getAttributes();
-
-        return array_any(
-            array: $attributes,
-            callback: static fn (ReflectionAttribute $attribute): bool => $attribute->newInstance() instanceof User,
-        );
+        return $this->hasAttribute(class: User::class);
     }
 
     /**
