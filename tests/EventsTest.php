@@ -26,17 +26,17 @@ final class EventsTest extends TestCase
     }
 
     #[Test]
-    public function it_lists_all_api_cases(): void
+    public function it_lists_all_events_api_cases(): void
     {
-        foreach (Events::api() as $event) {
+        foreach (Events::eventsApi() as $event) {
             self::assertTrue(condition: $event->supportsEventsApi());
         }
     }
 
     #[Test]
-    public function it_lists_all_rtm_cases(): void
+    public function it_lists_all_rtm_api_cases(): void
     {
-        foreach (Events::rtm() as $event) {
+        foreach (Events::rtmApi() as $event) {
             self::assertTrue(condition: $event->supportsRtmApi());
         }
     }

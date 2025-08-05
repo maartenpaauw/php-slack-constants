@@ -962,7 +962,7 @@ enum Events: string
     /**
      * @return Events[]
      */
-    public static function api(): array
+    public static function eventsApi(): array
     {
         return array_filter(
             array: self::cases(),
@@ -973,7 +973,7 @@ enum Events: string
     /**
      * @return Events[]
      */
-    public static function rtm(): array
+    public static function rtmApi(): array
     {
         return array_filter(
             array: self::cases(),
