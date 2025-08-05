@@ -6,5 +6,8 @@ namespace Maartenpaauw\Slack\Constants;
 
 use Attribute;
 
+/**
+ * @internal
+ */
 #[Attribute(Attribute::TARGET_CLASS_CONSTANT)]
 final readonly class API {}
