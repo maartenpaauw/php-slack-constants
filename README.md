@@ -6,7 +6,7 @@
 
 This package provides a PHP string-backed enum for the Slack API events with full support for the Events API and RTM
 API. The package helps you maintain consistency by preventing typos and provides context about each event, such as
-whether it's supported by certain APIs or if it's deprecated.
+whether it's supported by certain APIs.
 
 ## Support Me
 
@@ -31,12 +31,31 @@ composer require maartenpaauw/php-slack-constants
 
 ## Usage
 
+### Events
+
+The `Events` class provides a strongly typed way to work with Slack API events while providing context about API support.
+
 ```php
 use Maartenpaauw\Slack\Constants\Events;
 
 Events::AppMention->value; // app_mention
 Events::AppMention->supportsEventsApi(); // true
 Events::AppMention->supportsRtmApi(); // false
+```
+
+### Scopes
+
+The `Scopes` class provides a strongly typed way to work with Slack API token scopes that define permissions needed for
+API calls.
+
+```php
+use Maartenpaauw\Slack\Constants\Scopes;
+
+Scopes::BookmarksRead->value; // bookmarks:read
+Scopes::BookmarksRead->supportsApplicationLevelTokens(); // false
+Scopes::BookmarksRead->supportsBotTokens(); // true
+Scopes::BookmarksRead->supportsConfigurationTokens(); // false
+Scopes::BookmarksRead->supportsUserTokens(); // true
 ```
 
 ## Testing
