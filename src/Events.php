@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Maartenpaauw\Slack\Constants;
 
+use Deprecated;
 use Maartenpaauw\Slack\Constants\Attributes\API;
 use Maartenpaauw\Slack\Constants\Attributes\RTM;
 use Maartenpaauw\Slack\Constants\Concerns\SupportsAttributes;
@@ -15,15 +16,23 @@ enum Events: string
     /**
      * The list of accounts a user is signed into has changed
      *
-     * @see https://api.slack.com/events/accounts_changed
+     * @see https://docs.slack.dev/reference/events/accounts_changed
      */
     #[RTM]
     case AccountsChanged = 'accounts_changed';
 
     /**
+     * The context changed while an app was visible
+     *
+     * @see https://docs.slack.dev/reference/events/app_context_changed
+     */
+    #[API]
+    case AppContextChanged = 'app_context_changed';
+
+    /**
      * User has deleted an app
      *
-     * @see https://api.slack.com/events/app_deleted
+     * @see https://docs.slack.dev/reference/events/app_deleted
      */
     #[API]
     case AppDeleted = 'app_deleted';
@@ -31,7 +40,7 @@ enum Events: string
     /**
      * User clicked into your App Home
      *
-     * @see https://api.slack.com/events/app_home_opened
+     * @see https://docs.slack.dev/reference/events/app_home_opened
      */
     #[API]
     case AppHomeOpened = 'app_home_opened';
@@ -39,7 +48,7 @@ enum Events: string
     /**
      * User has installed an app
      *
-     * @see https://api.slack.com/events/app_installed
+     * @see https://docs.slack.dev/reference/events/app_installed
      */
     #[API]
     case AppInstalled = 'app_installed';
@@ -47,7 +56,7 @@ enum Events: string
     /**
      * Subscribe to only the message events that mention your app or bot
      *
-     * @see https://api.slack.com/events/app_mention
+     * @see https://docs.slack.dev/reference/events/app_mention
      */
     #[API]
     case AppMention = 'app_mention';
@@ -55,7 +64,7 @@ enum Events: string
     /**
      * Indicates your app's event subscriptions are being rate limited
      *
-     * @see https://api.slack.com/events/app_rate_limited
+     * @see https://docs.slack.dev/reference/events/app_rate_limited
      */
     #[API]
     case AppRateLimited = 'app_rate_limited';
@@ -63,7 +72,7 @@ enum Events: string
     /**
      * User requested an app
      *
-     * @see https://api.slack.com/events/app_requested
+     * @see https://docs.slack.dev/reference/events/app_requested
      */
     #[API]
     case AppRequested = 'app_requested';
@@ -71,7 +80,7 @@ enum Events: string
     /**
      * Your Slack app was uninstalled.
      *
-     * @see https://api.slack.com/events/app_uninstalled
+     * @see https://docs.slack.dev/reference/events/app_uninstalled
      */
     #[API]
     case AppUninstalled = 'app_uninstalled';
@@ -79,7 +88,7 @@ enum Events: string
     /**
      * User has uninstalled an app
      *
-     * @see https://api.slack.com/events/app_uninstalled_team
+     * @see https://docs.slack.dev/reference/events/app_uninstalled_team
      */
     #[API]
     case AppUninstalledTeam = 'app_uninstalled_team';
@@ -87,7 +96,7 @@ enum Events: string
     /**
      * The context changed while an AI assistant thread was visible
      *
-     * @see https://api.slack.com/events/assistant_thread_context_changed
+     * @see https://docs.slack.dev/reference/events/assistant_thread_context_changed
      */
     #[API]
     case AssistantThreadContextChanged = 'assistant_thread_context_changed';
@@ -95,7 +104,7 @@ enum Events: string
     /**
      * An AI assistant thread was started
      *
-     * @see https://api.slack.com/events/assistant_thread_started
+     * @see https://docs.slack.dev/reference/events/assistant_thread_started
      */
     #[API]
     case AssistantThreadStarted = 'assistant_thread_started';
@@ -103,7 +112,7 @@ enum Events: string
     /**
      * A bot user was added
      *
-     * @see https://api.slack.com/events/bot_added
+     * @see https://docs.slack.dev/reference/events/bot_added
      */
     #[RTM]
     case BotAdded = 'bot_added';
@@ -111,7 +120,7 @@ enum Events: string
     /**
      * A bot user was changed
      *
-     * @see https://api.slack.com/events/bot_changed
+     * @see https://docs.slack.dev/reference/events/bot_changed
      */
     #[RTM]
     case BotChanged = 'bot_changed';
@@ -119,7 +128,7 @@ enum Events: string
     /**
      * A Call was rejected
      *
-     * @see https://api.slack.com/events/call_rejected
+     * @see https://docs.slack.dev/reference/events/call_rejected
      */
     #[API]
     case CallRejected = 'call_rejected';
@@ -127,7 +136,7 @@ enum Events: string
     /**
      * A channel was archived
      *
-     * @see https://api.slack.com/events/channel_archive
+     * @see https://docs.slack.dev/reference/events/channel_archive
      */
     #[API] #[RTM]
     case ChannelArchive = 'channel_archive';
@@ -135,7 +144,7 @@ enum Events: string
     /**
      * A channel was created
      *
-     * @see https://api.slack.com/events/channel_created
+     * @see https://docs.slack.dev/reference/events/channel_created
      */
     #[API] #[RTM]
     case ChannelCreated = 'channel_created';
@@ -143,7 +152,7 @@ enum Events: string
     /**
      * A channel was deleted
      *
-     * @see https://api.slack.com/events/channel_deleted
+     * @see https://docs.slack.dev/reference/events/channel_deleted
      */
     #[API] #[RTM]
     case ChannelDeleted = 'channel_deleted';
@@ -151,7 +160,7 @@ enum Events: string
     /**
      * Bulk updates were made to a channel's history
      *
-     * @see https://api.slack.com/events/channel_history_changed
+     * @see https://docs.slack.dev/reference/events/channel_history_changed
      */
     #[API] #[RTM]
     case ChannelHistoryChanged = 'channel_history_changed';
@@ -159,7 +168,7 @@ enum Events: string
     /**
      * A channel ID changed
      *
-     * @see https://api.slack.com/events/channel_id_changed
+     * @see https://docs.slack.dev/reference/events/channel_id_changed
      */
     #[API]
     case ChannelIdChanged = 'channel_id_changed';
@@ -167,7 +176,7 @@ enum Events: string
     /**
      * You joined a channel
      *
-     * @see https://api.slack.com/events/channel_joined
+     * @see https://docs.slack.dev/reference/events/channel_joined
      */
     #[RTM]
     case ChannelJoined = 'channel_joined';
@@ -175,7 +184,7 @@ enum Events: string
     /**
      * You left a channel
      *
-     * @see https://api.slack.com/events/channel_left
+     * @see https://docs.slack.dev/reference/events/channel_left
      */
     #[API] #[RTM]
     case ChannelLeft = 'channel_left';
@@ -183,7 +192,7 @@ enum Events: string
     /**
      * Your channel read marker was updated
      *
-     * @see https://api.slack.com/events/channel_marked
+     * @see https://docs.slack.dev/reference/events/channel_marked
      */
     #[RTM]
     case ChannelMarked = 'channel_marked';
@@ -191,7 +200,7 @@ enum Events: string
     /**
      * A channel was renamed
      *
-     * @see https://api.slack.com/events/channel_rename
+     * @see https://docs.slack.dev/reference/events/channel_rename
      */
     #[API] #[RTM]
     case ChannelRename = 'channel_rename';
@@ -199,7 +208,7 @@ enum Events: string
     /**
      * A channel has been shared with an external workspace
      *
-     * @see https://api.slack.com/events/channel_shared
+     * @see https://docs.slack.dev/reference/events/channel_shared
      */
     #[API]
     case ChannelShared = 'channel_shared';
@@ -207,7 +216,7 @@ enum Events: string
     /**
      * A channel was unarchived
      *
-     * @see https://api.slack.com/events/channel_unarchive
+     * @see https://docs.slack.dev/reference/events/channel_unarchive
      */
     #[API] #[RTM]
     case ChannelUnarchive = 'channel_unarchive';
@@ -215,7 +224,7 @@ enum Events: string
     /**
      * A channel has been unshared with an external workspace
      *
-     * @see https://api.slack.com/events/channel_unshared
+     * @see https://docs.slack.dev/reference/events/channel_unshared
      */
     #[API]
     case ChannelUnshared = 'channel_unshared';
@@ -223,7 +232,7 @@ enum Events: string
     /**
      * A slash command has been added or changed
      *
-     * @see https://api.slack.com/events/commands_changed
+     * @see https://docs.slack.dev/reference/events/commands_changed
      */
     #[RTM]
     case CommandsChanged = 'commands_changed';
@@ -231,7 +240,7 @@ enum Events: string
     /**
      * Do not Disturb settings changed for the current user
      *
-     * @see https://api.slack.com/events/dnd_updated
+     * @see https://docs.slack.dev/reference/events/dnd_updated
      */
     #[API] #[RTM]
     case DndUpdated = 'dnd_updated';
@@ -239,7 +248,7 @@ enum Events: string
     /**
      * Do not Disturb settings changed for a member
      *
-     * @see https://api.slack.com/events/dnd_updated_user
+     * @see https://docs.slack.dev/reference/events/dnd_updated_user
      */
     #[API] #[RTM]
     case DndUpdatedUser = 'dnd_updated_user';
@@ -247,7 +256,7 @@ enum Events: string
     /**
      * The workspace email domain has changed
      *
-     * @see https://api.slack.com/events/email_domain_changed
+     * @see https://docs.slack.dev/reference/events/email_domain_changed
      */
     #[API] #[RTM]
     case EmailDomainChanged = 'email_domain_changed';
@@ -255,15 +264,31 @@ enum Events: string
     /**
      * A custom emoji has been added or changed
      *
-     * @see https://api.slack.com/events/emoji_changed
+     * @see https://docs.slack.dev/reference/events/emoji_changed
      */
     #[API] #[RTM]
     case EmojiChanged = 'emoji_changed';
 
     /**
+     * User opened the comments tab of a Work Object flexpane, refreshed comments, or requested the next page of comments
+     *
+     * @see https://docs.slack.dev/reference/events/entity_comments_requested
+     */
+    #[API]
+    case EntityCommentsRequested = 'entity_comments_requested';
+
+    /**
+     * User clicked on a Work Object unfurl or refreshed the flexpane
+     *
+     * @see https://docs.slack.dev/reference/events/entity_details_requested
+     */
+    #[API]
+    case EntityDetailsRequested = 'entity_details_requested';
+
+    /**
      * An enterprise grid migration has finished on an external workspace.
      *
-     * @see https://api.slack.com/events/external_org_migration_finished
+     * @see https://docs.slack.dev/reference/events/external_org_migration_finished
      */
     #[RTM]
     case ExternalOrgMigrationFinished = 'external_org_migration_finished';
@@ -271,7 +296,7 @@ enum Events: string
     /**
      * An enterprise grid migration has started on an external workspace.
      *
-     * @see https://api.slack.com/events/external_org_migration_started
+     * @see https://docs.slack.dev/reference/events/external_org_migration_started
      */
     #[RTM]
     case ExternalOrgMigrationStarted = 'external_org_migration_started';
@@ -279,7 +304,7 @@ enum Events: string
     /**
      * A file was changed
      *
-     * @see https://api.slack.com/events/file_change
+     * @see https://docs.slack.dev/reference/events/file_change
      */
     #[API] #[RTM]
     case FileChange = 'file_change';
@@ -287,7 +312,7 @@ enum Events: string
     /**
      * A file comment was deleted
      *
-     * @see https://api.slack.com/events/file_comment_deleted
+     * @see https://docs.slack.dev/reference/events/file_comment_deleted
      */
     #[API] #[RTM]
     case FileCommentDeleted = 'file_comment_deleted';
@@ -295,7 +320,7 @@ enum Events: string
     /**
      * A file was created
      *
-     * @see https://api.slack.com/events/file_created
+     * @see https://docs.slack.dev/reference/events/file_created
      */
     #[API] #[RTM]
     case FileCreated = 'file_created';
@@ -303,7 +328,7 @@ enum Events: string
     /**
      * A file was deleted
      *
-     * @see https://api.slack.com/events/file_deleted
+     * @see https://docs.slack.dev/reference/events/file_deleted
      */
     #[API] #[RTM]
     case FileDeleted = 'file_deleted';
@@ -311,7 +336,7 @@ enum Events: string
     /**
      * A file was made public
      *
-     * @see https://api.slack.com/events/file_public
+     * @see https://docs.slack.dev/reference/events/file_public
      */
     #[API] #[RTM]
     case FilePublic = 'file_public';
@@ -319,7 +344,7 @@ enum Events: string
     /**
      * A file was shared
      *
-     * @see https://api.slack.com/events/file_shared
+     * @see https://docs.slack.dev/reference/events/file_shared
      */
     #[API] #[RTM]
     case FileShared = 'file_shared';
@@ -327,7 +352,7 @@ enum Events: string
     /**
      * A file was unshared
      *
-     * @see https://api.slack.com/events/file_unshared
+     * @see https://docs.slack.dev/reference/events/file_unshared
      */
     #[API] #[RTM]
     case FileUnshared = 'file_unshared';
@@ -335,7 +360,7 @@ enum Events: string
     /**
      * Your app function is executed as a step in a workflow
      *
-     * @see https://api.slack.com/events/function_executed
+     * @see https://docs.slack.dev/reference/events/function_executed
      */
     #[API]
     case FunctionExecuted = 'function_executed';
@@ -343,7 +368,7 @@ enum Events: string
     /**
      * The server intends to close the connection soon.
      *
-     * @see https://api.slack.com/events/goodbye
+     * @see https://docs.slack.dev/reference/events/goodbye
      */
     #[RTM]
     case Goodbye = 'goodbye';
@@ -351,7 +376,7 @@ enum Events: string
     /**
      * An enterprise grid migration has finished on this workspace.
      *
-     * @see https://api.slack.com/events/grid_migration_finished
+     * @see https://docs.slack.dev/reference/events/grid_migration_finished
      */
     #[API]
     case GridMigrationFinished = 'grid_migration_finished';
@@ -359,7 +384,7 @@ enum Events: string
     /**
      * An enterprise grid migration has started on this workspace.
      *
-     * @see https://api.slack.com/events/grid_migration_started
+     * @see https://docs.slack.dev/reference/events/grid_migration_started
      */
     #[API]
     case GridMigrationStarted = 'grid_migration_started';
@@ -367,7 +392,7 @@ enum Events: string
     /**
      * A private channel was archived
      *
-     * @see https://api.slack.com/events/group_archive
+     * @see https://docs.slack.dev/reference/events/group_archive
      */
     #[API] #[RTM]
     case GroupArchive = 'group_archive';
@@ -375,7 +400,7 @@ enum Events: string
     /**
      * You closed a private channel
      *
-     * @see https://api.slack.com/events/group_close
+     * @see https://docs.slack.dev/reference/events/group_close
      */
     #[API] #[RTM]
     case GroupClose = 'group_close';
@@ -383,7 +408,7 @@ enum Events: string
     /**
      * A private channel was deleted
      *
-     * @see https://api.slack.com/events/group_deleted
+     * @see https://docs.slack.dev/reference/events/group_deleted
      */
     #[API] #[RTM]
     case GroupDeleted = 'group_deleted';
@@ -391,7 +416,7 @@ enum Events: string
     /**
      * Bulk updates were made to a private channel's history
      *
-     * @see https://api.slack.com/events/group_history_changed
+     * @see https://docs.slack.dev/reference/events/group_history_changed
      */
     #[API] #[RTM]
     case GroupHistoryChanged = 'group_history_changed';
@@ -399,7 +424,7 @@ enum Events: string
     /**
      * You joined a private channel
      *
-     * @see https://api.slack.com/events/group_joined
+     * @see https://docs.slack.dev/reference/events/group_joined
      */
     #[RTM]
     case GroupJoined = 'group_joined';
@@ -407,7 +432,7 @@ enum Events: string
     /**
      * You left a private channel
      *
-     * @see https://api.slack.com/events/group_left
+     * @see https://docs.slack.dev/reference/events/group_left
      */
     #[API] #[RTM]
     case GroupLeft = 'group_left';
@@ -415,7 +440,7 @@ enum Events: string
     /**
      * A private channel read marker was updated
      *
-     * @see https://api.slack.com/events/group_marked
+     * @see https://docs.slack.dev/reference/events/group_marked
      */
     #[RTM]
     case GroupMarked = 'group_marked';
@@ -423,7 +448,7 @@ enum Events: string
     /**
      * You created a group DM
      *
-     * @see https://api.slack.com/events/group_open
+     * @see https://docs.slack.dev/reference/events/group_open
      */
     #[API] #[RTM]
     case GroupOpen = 'group_open';
@@ -431,7 +456,7 @@ enum Events: string
     /**
      * A private channel was renamed
      *
-     * @see https://api.slack.com/events/group_rename
+     * @see https://docs.slack.dev/reference/events/group_rename
      */
     #[API] #[RTM]
     case GroupRename = 'group_rename';
@@ -439,7 +464,7 @@ enum Events: string
     /**
      * A private channel was unarchived
      *
-     * @see https://api.slack.com/events/group_unarchive
+     * @see https://docs.slack.dev/reference/events/group_unarchive
      */
     #[API] #[RTM]
     case GroupUnarchive = 'group_unarchive';
@@ -447,7 +472,7 @@ enum Events: string
     /**
      * The client has successfully connected to the server
      *
-     * @see https://api.slack.com/events/hello
+     * @see https://docs.slack.dev/reference/events/hello
      */
     #[RTM]
     case Hello = 'hello';
@@ -455,7 +480,7 @@ enum Events: string
     /**
      * You closed a DM
      *
-     * @see https://api.slack.com/events/im_close
+     * @see https://docs.slack.dev/reference/events/im_close
      */
     #[API] #[RTM]
     case ImClose = 'im_close';
@@ -463,7 +488,7 @@ enum Events: string
     /**
      * A DM was created
      *
-     * @see https://api.slack.com/events/im_created
+     * @see https://docs.slack.dev/reference/events/im_created
      */
     #[API] #[RTM]
     case ImCreated = 'im_created';
@@ -471,7 +496,7 @@ enum Events: string
     /**
      * Bulk updates were made to a DM's history
      *
-     * @see https://api.slack.com/events/im_history_changed
+     * @see https://docs.slack.dev/reference/events/im_history_changed
      */
     #[API] #[RTM]
     case ImHistoryChanged = 'im_history_changed';
@@ -479,7 +504,7 @@ enum Events: string
     /**
      * A direct message read marker was updated
      *
-     * @see https://api.slack.com/events/im_marked
+     * @see https://docs.slack.dev/reference/events/im_marked
      */
     #[RTM]
     case ImMarked = 'im_marked';
@@ -487,7 +512,7 @@ enum Events: string
     /**
      * You opened a DM
      *
-     * @see https://api.slack.com/events/im_open
+     * @see https://docs.slack.dev/reference/events/im_open
      */
     #[API] #[RTM]
     case ImOpen = 'im_open';
@@ -495,7 +520,7 @@ enum Events: string
     /**
      * User requested an invite
      *
-     * @see https://api.slack.com/events/invite_requested
+     * @see https://docs.slack.dev/reference/events/invite_requested
      */
     #[API]
     case InviteRequested = 'invite_requested';
@@ -503,7 +528,7 @@ enum Events: string
     /**
      * A message was posted containing one or more links relevant to your application
      *
-     * @see https://api.slack.com/events/link_shared
+     * @see https://docs.slack.dev/reference/events/link_shared
      */
     #[API]
     case LinkShared = 'link_shared';
@@ -511,7 +536,7 @@ enum Events: string
     /**
      * You manually updated your presence
      *
-     * @see https://api.slack.com/events/manual_presence_change
+     * @see https://docs.slack.dev/reference/events/manual_presence_change
      */
     #[RTM]
     case ManualPresenceChange = 'manual_presence_change';
@@ -519,7 +544,7 @@ enum Events: string
     /**
      * A user joined a public channel, private channel or MPDM.
      *
-     * @see https://api.slack.com/events/member_joined_channel
+     * @see https://docs.slack.dev/reference/events/member_joined_channel
      */
     #[API] #[RTM]
     case MemberJoinedChannel = 'member_joined_channel';
@@ -527,7 +552,7 @@ enum Events: string
     /**
      * A user left a public or private channel
      *
-     * @see https://api.slack.com/events/member_left_channel
+     * @see https://docs.slack.dev/reference/events/member_left_channel
      */
     #[API] #[RTM]
     case MemberLeftChannel = 'member_left_channel';
@@ -535,7 +560,7 @@ enum Events: string
     /**
      * A message was sent to a channel
      *
-     * @see https://api.slack.com/events/message
+     * @see https://docs.slack.dev/reference/events/message
      */
     #[API] #[RTM]
     case Message = 'message';
@@ -543,7 +568,7 @@ enum Events: string
     /**
      * A user sent a message to your Slack app
      *
-     * @see https://api.slack.com/events/message.app_home
+     * @see https://docs.slack.dev/reference/events/message.app_home
      */
     #[API]
     case MessageAppHome = 'message.app_home';
@@ -551,7 +576,7 @@ enum Events: string
     /**
      * A message was posted to a channel
      *
-     * @see https://api.slack.com/events/message.channels
+     * @see https://docs.slack.dev/reference/events/message.channels
      */
     #[API]
     case MessageChannels = 'message.channels';
@@ -559,7 +584,7 @@ enum Events: string
     /**
      * A message was posted to a private channel
      *
-     * @see https://api.slack.com/events/message.groups
+     * @see https://docs.slack.dev/reference/events/message.groups
      */
     #[API]
     case MessageGroups = 'message.groups';
@@ -567,7 +592,7 @@ enum Events: string
     /**
      * A message was posted in a direct message channel
      *
-     * @see https://api.slack.com/events/message.im
+     * @see https://docs.slack.dev/reference/events/message.im
      */
     #[API]
     case MessageIm = 'message.im';
@@ -575,7 +600,7 @@ enum Events: string
     /**
      * A message was posted in a multiparty direct message channel
      *
-     * @see https://api.slack.com/events/message.mpim
+     * @see https://docs.slack.dev/reference/events/message.mpim
      */
     #[API]
     case MessageMpim = 'message.mpim';
@@ -583,7 +608,7 @@ enum Events: string
     /**
      * Message metadata was deleted
      *
-     * @see https://api.slack.com/events/message_metadata_deleted
+     * @see https://docs.slack.dev/reference/events/message_metadata_deleted
      */
     #[API]
     case MessageMetadataDeleted = 'message_metadata_deleted';
@@ -591,7 +616,7 @@ enum Events: string
     /**
      * Message metadata was posted
      *
-     * @see https://api.slack.com/events/message_metadata_posted
+     * @see https://docs.slack.dev/reference/events/message_metadata_posted
      */
     #[API]
     case MessageMetadataPosted = 'message_metadata_posted';
@@ -599,7 +624,7 @@ enum Events: string
     /**
      * Message metadata was updated
      *
-     * @see https://api.slack.com/events/message_metadata_updated
+     * @see https://docs.slack.dev/reference/events/message_metadata_updated
      */
     #[API]
     case MessageMetadataUpdated = 'message_metadata_updated';
@@ -607,7 +632,7 @@ enum Events: string
     /**
      * A pin was added to a channel
      *
-     * @see https://api.slack.com/events/pin_added
+     * @see https://docs.slack.dev/reference/events/pin_added
      */
     #[API] #[RTM]
     case PinAdded = 'pin_added';
@@ -615,7 +640,7 @@ enum Events: string
     /**
      * A pin was removed from a channel
      *
-     * @see https://api.slack.com/events/pin_removed
+     * @see https://docs.slack.dev/reference/events/pin_removed
      */
     #[API] #[RTM]
     case PinRemoved = 'pin_removed';
@@ -623,7 +648,7 @@ enum Events: string
     /**
      * You have updated your preferences
      *
-     * @see https://api.slack.com/events/pref_change
+     * @see https://docs.slack.dev/reference/events/pref_change
      */
     #[RTM]
     case PrefChange = 'pref_change';
@@ -631,7 +656,7 @@ enum Events: string
     /**
      * A member's presence changed
      *
-     * @see https://api.slack.com/events/presence_change
+     * @see https://docs.slack.dev/reference/events/presence_change
      */
     #[RTM]
     case PresenceChange = 'presence_change';
@@ -639,7 +664,7 @@ enum Events: string
     /**
      * Determine the current presence status for a list of users
      *
-     * @see https://api.slack.com/events/presence_query
+     * @see https://docs.slack.dev/reference/events/presence_query
      */
     #[RTM]
     case PresenceQuery = 'presence_query';
@@ -647,7 +672,7 @@ enum Events: string
     /**
      * Subscribe to presence events for the specified users
      *
-     * @see https://api.slack.com/events/presence_sub
+     * @see https://docs.slack.dev/reference/events/presence_sub
      */
     #[RTM]
     case PresenceSub = 'presence_sub';
@@ -655,7 +680,7 @@ enum Events: string
     /**
      * A member has added an emoji reaction to an item
      *
-     * @see https://api.slack.com/events/reaction_added
+     * @see https://docs.slack.dev/reference/events/reaction_added
      */
     #[API] #[RTM]
     case ReactionAdded = 'reaction_added';
@@ -663,7 +688,7 @@ enum Events: string
     /**
      * A member removed an emoji reaction
      *
-     * @see https://api.slack.com/events/reaction_removed
+     * @see https://docs.slack.dev/reference/events/reaction_removed
      */
     #[API] #[RTM]
     case ReactionRemoved = 'reaction_removed';
@@ -671,7 +696,7 @@ enum Events: string
     /**
      * Experimental
      *
-     * @see https://api.slack.com/events/reconnect_url
+     * @see https://docs.slack.dev/reference/events/reconnect_url
      */
     #[RTM]
     case ReconnectUrl = 'reconnect_url';
@@ -679,7 +704,7 @@ enum Events: string
     /**
      * A shared channel invite was accepted
      *
-     * @see https://api.slack.com/events/shared_channel_invite_accepted
+     * @see https://docs.slack.dev/reference/events/shared_channel_invite_accepted
      */
     #[API]
     case SharedChannelInviteAccepted = 'shared_channel_invite_accepted';
@@ -687,7 +712,7 @@ enum Events: string
     /**
      * A shared channel invite was approved
      *
-     * @see https://api.slack.com/events/shared_channel_invite_approved
+     * @see https://docs.slack.dev/reference/events/shared_channel_invite_approved
      */
     #[API]
     case SharedChannelInviteApproved = 'shared_channel_invite_approved';
@@ -695,7 +720,7 @@ enum Events: string
     /**
      * A shared channel invite was declined
      *
-     * @see https://api.slack.com/events/shared_channel_invite_declined
+     * @see https://docs.slack.dev/reference/events/shared_channel_invite_declined
      */
     #[API]
     case SharedChannelInviteDeclined = 'shared_channel_invite_declined';
@@ -703,7 +728,7 @@ enum Events: string
     /**
      * A shared channel invite was sent to a Slack user
      *
-     * @see https://api.slack.com/events/shared_channel_invite_received
+     * @see https://docs.slack.dev/reference/events/shared_channel_invite_received
      */
     #[API] #[RTM]
     case SharedChannelInviteReceived = 'shared_channel_invite_received';
@@ -711,7 +736,7 @@ enum Events: string
     /**
      * A shared channel invite was requested
      *
-     * @see https://api.slack.com/events/shared_channel_invite_requested
+     * @see https://docs.slack.dev/reference/events/shared_channel_invite_requested
      */
     #[API]
     case SharedChannelInviteRequested = 'shared_channel_invite_requested';
@@ -719,7 +744,7 @@ enum Events: string
     /**
      * A member has saved an item for later or starred an item
      *
-     * @see https://api.slack.com/events/star_added
+     * @see https://docs.slack.dev/reference/events/star_added
      */
     #[API] #[RTM]
     case StarAdded = 'star_added';
@@ -727,7 +752,7 @@ enum Events: string
     /**
      * A member has removed an item saved for later or starred an item
      *
-     * @see https://api.slack.com/events/star_removed
+     * @see https://docs.slack.dev/reference/events/star_removed
      */
     #[API] #[RTM]
     case StarRemoved = 'star_removed';
@@ -735,7 +760,7 @@ enum Events: string
     /**
      * A User Group has been added to the workspace
      *
-     * @see https://api.slack.com/events/subteam_created
+     * @see https://docs.slack.dev/reference/events/subteam_created
      */
     #[API] #[RTM]
     case SubteamCreated = 'subteam_created';
@@ -743,7 +768,7 @@ enum Events: string
     /**
      * The membership of an existing User Group has changed
      *
-     * @see https://api.slack.com/events/subteam_members_changed
+     * @see https://docs.slack.dev/reference/events/subteam_members_changed
      */
     #[API] #[RTM]
     case SubteamMembersChanged = 'subteam_members_changed';
@@ -751,7 +776,7 @@ enum Events: string
     /**
      * You have been added to a User Group
      *
-     * @see https://api.slack.com/events/subteam_self_added
+     * @see https://docs.slack.dev/reference/events/subteam_self_added
      */
     #[API] #[RTM]
     case SubteamSelfAdded = 'subteam_self_added';
@@ -759,7 +784,7 @@ enum Events: string
     /**
      * You have been removed from a User Group
      *
-     * @see https://api.slack.com/events/subteam_self_removed
+     * @see https://docs.slack.dev/reference/events/subteam_self_removed
      */
     #[API] #[RTM]
     case SubteamSelfRemoved = 'subteam_self_removed';
@@ -767,7 +792,7 @@ enum Events: string
     /**
      * An existing User Group has been updated or its members changed
      *
-     * @see https://api.slack.com/events/subteam_updated
+     * @see https://docs.slack.dev/reference/events/subteam_updated
      */
     #[API] #[RTM]
     case SubteamUpdated = 'subteam_updated';
@@ -775,7 +800,7 @@ enum Events: string
     /**
      * Access to a set of teams was granted to your org app
      *
-     * @see https://api.slack.com/events/team_access_granted
+     * @see https://docs.slack.dev/reference/events/team_access_granted
      */
     #[API]
     case TeamAccessGranted = 'team_access_granted';
@@ -783,7 +808,7 @@ enum Events: string
     /**
      * Access to a set of teams was revoked from your org app
      *
-     * @see https://api.slack.com/events/team_access_revoked
+     * @see https://docs.slack.dev/reference/events/team_access_revoked
      */
     #[API]
     case TeamAccessRevoked = 'team_access_revoked';
@@ -791,7 +816,7 @@ enum Events: string
     /**
      * The workspace domain has changed
      *
-     * @see https://api.slack.com/events/team_domain_change
+     * @see https://docs.slack.dev/reference/events/team_domain_change
      */
     #[API] #[RTM]
     case TeamDomainChange = 'team_domain_change';
@@ -799,7 +824,7 @@ enum Events: string
     /**
      * A new member has joined
      *
-     * @see https://api.slack.com/events/team_join
+     * @see https://docs.slack.dev/reference/events/team_join
      */
     #[API] #[RTM]
     case TeamJoin = 'team_join';
@@ -807,7 +832,7 @@ enum Events: string
     /**
      * The workspace is being migrated between servers
      *
-     * @see https://api.slack.com/events/team_migration_started
+     * @see https://docs.slack.dev/reference/events/team_migration_started
      */
     #[RTM]
     case TeamMigrationStarted = 'team_migration_started';
@@ -815,7 +840,7 @@ enum Events: string
     /**
      * The account billing plan has changed
      *
-     * @see https://api.slack.com/events/team_plan_change
+     * @see https://docs.slack.dev/reference/events/team_plan_change
      */
     #[RTM]
     case TeamPlanChange = 'team_plan_change';
@@ -823,7 +848,7 @@ enum Events: string
     /**
      * A preference has been updated
      *
-     * @see https://api.slack.com/events/team_pref_change
+     * @see https://docs.slack.dev/reference/events/team_pref_change
      */
     #[RTM]
     case TeamPrefChange = 'team_pref_change';
@@ -831,7 +856,7 @@ enum Events: string
     /**
      * The workspace profile fields have been updated
      *
-     * @see https://api.slack.com/events/team_profile_change
+     * @see https://docs.slack.dev/reference/events/team_profile_change
      */
     #[RTM]
     case TeamProfileChange = 'team_profile_change';
@@ -839,7 +864,7 @@ enum Events: string
     /**
      * The workspace profile fields have been deleted
      *
-     * @see https://api.slack.com/events/team_profile_delete
+     * @see https://docs.slack.dev/reference/events/team_profile_delete
      */
     #[RTM]
     case TeamProfileDelete = 'team_profile_delete';
@@ -847,7 +872,7 @@ enum Events: string
     /**
      * The workspace profile fields have been reordered
      *
-     * @see https://api.slack.com/events/team_profile_reorder
+     * @see https://docs.slack.dev/reference/events/team_profile_reorder
      */
     #[RTM]
     case TeamProfileReorder = 'team_profile_reorder';
@@ -855,7 +880,7 @@ enum Events: string
     /**
      * The workspace name has changed
      *
-     * @see https://api.slack.com/events/team_rename
+     * @see https://docs.slack.dev/reference/events/team_rename
      */
     #[API] #[RTM]
     case TeamRename = 'team_rename';
@@ -863,7 +888,7 @@ enum Events: string
     /**
      * API tokens for your app were revoked.
      *
-     * @see https://api.slack.com/events/tokens_revoked
+     * @see https://docs.slack.dev/reference/events/tokens_revoked
      */
     #[API]
     case TokensRevoked = 'tokens_revoked';
@@ -871,7 +896,7 @@ enum Events: string
     /**
      * Verifies ownership of an Events API Request URL
      *
-     * @see https://api.slack.com/events/url_verification
+     * @see https://docs.slack.dev/reference/events/url_verification
      */
     #[API]
     case UrlVerification = 'url_verification';
@@ -879,23 +904,47 @@ enum Events: string
     /**
      * A member's data has changed
      *
-     * @see https://api.slack.com/events/user_change
+     * @see https://docs.slack.dev/reference/events/user_change
      */
     #[API] #[RTM]
     case UserChange = 'user_change';
 
     /**
+     * A member requested to connect with or disconnect from the app
+     *
+     * @see https://docs.slack.dev/reference/events/user_connection
+     */
+    #[API] #[RTM]
+    case UserConnection = 'user_connection';
+
+    /**
      * A user's huddle status has changed
      *
-     * @see https://api.slack.com/events/user_huddle_changed
+     * @see https://docs.slack.dev/reference/events/user_huddle_changed
      */
     #[API] #[RTM]
     case UserHuddleChanged = 'user_huddle_changed';
 
     /**
+     * A user's profile has changed
+     *
+     * @see https://docs.slack.dev/reference/events/user_profile_changed
+     */
+    #[API] #[RTM]
+    case UserProfileChanged = 'user_profile_changed';
+
+    /**
+     * A user's status has changed
+     *
+     * @see https://docs.slack.dev/reference/events/user_status_changed
+     */
+    #[API] #[RTM]
+    case UserStatusChanged = 'user_status_changed';
+
+    /**
      * A channel member is typing a message
      *
-     * @see https://api.slack.com/events/user_typing
+     * @see https://docs.slack.dev/reference/events/user_typing
      */
     #[RTM]
     case UserTyping = 'user_typing';
@@ -903,41 +952,46 @@ enum Events: string
     /**
      * A workflow that contains a step supported by your app was deleted
      *
-     * @see https://api.slack.com/events/workflow_deleted
+     * @see https://docs.slack.dev/reference/events/workflow_deleted
      */
     #[API]
+    #[Deprecated(message: 'retired by Slack as part of the "Steps from Apps" deprecation; no longer fires', since: '1.2.0')]
     case WorkflowDeleted = 'workflow_deleted';
 
     /**
      * A workflow that contains a step supported by your app was published
      *
-     * @see https://api.slack.com/events/workflow_published
+     * @see https://docs.slack.dev/reference/events/workflow_published
      */
     #[API]
+    #[Deprecated(message: 'retired by Slack as part of the "Steps from Apps" deprecation; no longer fires', since: '1.2.0')]
     case WorkflowPublished = 'workflow_published';
 
     /**
      * A workflow step supported by your app was removed from a workflow
      *
-     * @see https://api.slack.com/events/workflow_step_deleted
+     * @see https://docs.slack.dev/reference/events/workflow_step_deleted
      */
     #[API]
+    #[Deprecated(message: 'retired by Slack as part of the "Steps from Apps" deprecation; no longer fires', since: '1.2.0')]
     case WorkflowStepDeleted = 'workflow_step_deleted';
 
     /**
      * A workflow step supported by your app should execute
      *
-     * @see https://api.slack.com/events/workflow_step_execute
+     * @see https://docs.slack.dev/reference/events/workflow_step_execute
      */
     #[API]
+    #[Deprecated(message: 'retired by Slack as part of the "Steps from Apps" deprecation; no longer fires', since: '1.2.0')]
     case WorkflowStepExecute = 'workflow_step_execute';
 
     /**
      * A workflow that contains a step supported by your app was unpublished
      *
-     * @see https://api.slack.com/events/workflow_unpublished
+     * @see https://docs.slack.dev/reference/events/workflow_unpublished
      */
     #[API]
+    #[Deprecated(message: 'retired by Slack as part of the "Steps from Apps" deprecation; no longer fires', since: '1.2.0')]
     case WorkflowUnpublished = 'workflow_unpublished';
 
     public function supportsEventsApi(): bool
