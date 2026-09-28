@@ -58,6 +58,17 @@ Scopes::BookmarksRead->supportsConfigurationTokens(); // false
 Scopes::BookmarksRead->supportsUserTokens(); // true
 ```
 
+### Interactions
+
+The `Interactions` class provides a strongly typed way to work with the `type` values Slack sends to your
+interactivity Request URL.
+
+```php
+use Maartenpaauw\Slack\Constants\Interactions;
+
+Interactions::BlockActions->value; // block_actions
+```
+
 ## Testing
 
 ```bash
