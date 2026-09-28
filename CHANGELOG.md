@@ -2,6 +2,12 @@
 
 All notable changes to `php-slack-constants` will be documented in this file.
 
+## v1.3.0 - 2026-09-28
+
+### Added
+
+- `Interactions` enum for interactivity payload types.
+
 ## v1.2.0 - 2026-07-28
 
 ### Features
